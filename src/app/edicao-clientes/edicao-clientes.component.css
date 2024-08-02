@@ -1,0 +1,116 @@
+/* Estilos globais
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+
+/* Estilos para o container 
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+
+/* Botões 
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Tabelas 
+
+.mat-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.mat-header-cell,
+.mat-cell {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.mat-header-cell {
+    background-color: #007bff;
+    color: white;
+}
+
+.mat-cell {
+    background-color: white;
+}
+
+
+/* Formulários 
+
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #007bff;
+    font-family: 'Roboto';
+}
+
+legend {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+
+/* Inputs 
+
+input,
+select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+
+/* Checkboxes 
+
+.mat-checkbox {
+    margin: 5px 0;
+}
+
+.mat-checkbox-label {
+    font-weight: normal;
+}
+
+.section {
+    padding: 10px 0;
+}
+
+.example-full-width {
+    width: 100%;
+}
+    */

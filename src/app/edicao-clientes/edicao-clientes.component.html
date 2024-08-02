@@ -1,0 +1,156 @@
+<div class="register-form">
+    <!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()"> -->
+        <div>
+            <fieldset>
+                <legend>Edição de Clientes</legend>
+                <div class="space-around border">
+                    <div>
+                        <mat-form-field class="nome">
+                            <mat-label>Nome</mat-label>
+                            <input matInput placeholder="" [(ngModel)]="cliente.nome" maxlength="150" required />
+                        </mat-form-field>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Nome é obrigatório</div>
+                            <div *ngIf="f.email.errors.email">Nome é inválido</div>
+                          </div>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Mail</mat-label>
+                            <input matInput type="email" placeholder="exemplo@mail.com" [(ngModel)]="cliente.email" maxlength="150" required/>
+                        </mat-form-field>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email é obrigatório</div>
+                            <div *ngIf="f.email.errors.email">Email é inválido</div>
+                          </div>
+                    </div>
+
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Telefone</mat-label>
+                            <input matInput placeholder="(12) 12345-1234" [(ngModel)]="cliente.telefone" mask="(00) 00000-0000" required/>
+                        </mat-form-field>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Telefone é obrigatório</div>
+                          </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset>
+                <legend>Informações Pessoais</legend>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Tipo Pessoa</mat-label>
+                        <select matNativeControl [(ngModel)]="cliente.tipo" required>
+              <option value="fisica">Fisica</option>
+              <option value="juridica">Juridica</option>
+            </select>
+                    </mat-form-field>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Tipo de Pessoa é obrigatório</div>
+                      </div>
+                </div>
+
+                <div *ngIf="cliente.cpf == null">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>CPF/CNPJ</mat-label>
+                        <input matInput placeholder="" [(ngModel)]="cliente.cnpj"  mask="000.000.000-00||00.0000.000/0000-00" required />
+                    </mat-form-field>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">CPF/CNPJ é obrigatório</div>
+                        <div *ngIf="f.email.errors.email">CPF/CNPJ é inválido</div>
+                      </div>
+                </div>
+                <div *ngIf="cliente.cnpj == null">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>CPF/CNPJ</mat-label>
+                        <input matInput placeholder="" [(ngModel)]="cliente.cpf"  mask="000.000.000-00||00.0000.000/0000-00" required />
+                    </mat-form-field>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">CPF/CNPJ é obrigatório</div>
+                        <div *ngIf="f.email.errors.email">CPF/CNPJ é inválido</div>
+                      </div>
+                </div>
+
+                <div>
+                    <section class="example-section">
+                        <mat-checkbox class="example-margin" (change)="checkChange($event)">Inscricao</mat-checkbox>
+                    </section>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Inscrição Estadual</mat-label>
+                        <input matInput placeholder="123.123.123-123" [(ngModel)]="cliente.inscricaoEstadual" mask="000.000.000-000" [disabled]="InscricaoDesabled"/>
+                    </mat-form-field>
+                </div>
+            </fieldset>
+        </div>
+
+        <div *ngIf="cliente.tipo == 'fisica'">
+            <fieldset>
+                <legend>Informações Pessoais</legend>
+
+                <mat-form-field>
+                    <mat-label>Genero</mat-label>
+                    <select matNativeControl [(ngModel)]="cliente.genero" required>
+            <option value="F">Feminino</option>
+            <option value="M">Masculino</option>
+            <option value="O">Outro</option>
+          </select>
+                </mat-form-field>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Género é obrigatório</div>
+                  </div>
+
+                <mat-form-field>
+                <mat-label>Data Nascimento</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="cliente.dataNascimento">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </fieldset>
+        </div>
+
+        <div>
+            <fieldset>
+                <legend>Situação Cliente</legend>
+                <section class="example-section">
+                    <mat-checkbox class="example-margin" [(ngModel)]="cliente.bloqueado">Bloqueado</mat-checkbox>
+                </section>
+            </fieldset>
+        </div>
+
+        <div>
+            <fieldset>
+                <legend>Senha</legend>
+                <div>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Senha</mat-label>
+                        <input matInput type="password" placeholder="" value="" maxlength="15" minlength="8"/>
+                    </mat-form-field>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Senha é obrigatório</div>
+                        <div *ngIf="f.email.errors.email">Senha é inválido</div>
+                      </div>
+                </div>
+
+                <div>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Confirme Senha</mat-label>
+                        <input matInput type="password" placeholder="" value="" maxlength="15" minlength="8"/>
+                    </mat-form-field>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Senha é obrigatório</div>
+                        <div *ngIf="f.email.errors.email">Senha é inválido</div>
+                      </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <button type="submit" (click)="updateClient()">Adicionar</button>
+    <!-- </form> -->
+        <!-- <p-toast/> -->
+        
+    
+</div>
