@@ -4,8 +4,8 @@ export class Client{
     email!: string;
     telefone!: number;
     tipo!: string;
-    cpf!: number;
-    cnpj!: number;
+    cpf!: Number;
+    cnpj!: Number;
     inscricaoEstadual!: string;
     bloqueado!: boolean;
     genero!: string;

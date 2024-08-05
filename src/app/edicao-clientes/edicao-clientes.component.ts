@@ -49,19 +49,18 @@ export class EdicaoClientesComponent {
 
   ngOnInit(){
     if(this.globals.getLine() != -1){
-      this.api.getCliente(this.globals.getLine()).subscribe(
-        (response: Client) => {
+      this.api.getCliente(this.globals.getLine()).subscribe({
+        next:(response:Client)=>{
           console.log(response);
 
           this.cliente = response;
           console.log(this.cliente);
           console.log(this.cliente.telefone);
-          
         },
-        (error: any) => {
+        error: (error) => {
           console.error('Erro ao obter clientes:', error);
         }
-      );
+      });
     }
   }
 
@@ -93,53 +92,94 @@ export class EdicaoClientesComponent {
 
   updateClient(){
     if(this.vericacaoCampos()){
-      this.api.verifyMail(this.cliente.email).subscribe(
-        (response: boolean) => {
-          
-          this.api.verifyCPF(this.cliente.cpf).subscribe(
-            (response: boolean) => {
-              
-              this.api.verifyCNPJ(this.cliente.cnpj).subscribe(
-                (response: boolean) => {
-                  
-                  this.api.verifyInscricao(this.cliente.inscricaoEstadual).subscribe(
-                    (response: boolean) => {
-                      
-                      this.api.updateCliente(this.cliente).subscribe(
-                        (response: any) => {
-                          
+      this.api.verifyMail(this.cliente.email).subscribe({
+        next:()=>{
+          this.api.verifyCPF(this.cliente.cpf).subscribe({
+            next:()=>{
+              this.api.verifyCNPJ(this.cliente.cnpj).subscribe({
+                next:()=>{
+                  this.api.verifyInscricao(this.cliente.inscricaoEstadual).subscribe({
+                    next:()=>{
+                      this.api.updateCliente(this.cliente).subscribe({
+                        next:()=>{
                           this.router.navigate(['']);
-                          
                         },
-                        (error: any) => {
+                        error: () => {
                           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erro ao gravar' });
                         }
-                      );
-                      this.router.navigate(['']);
-                      
+                      })
                     },
-                    (error: any) => {
+                    error:()=>{
                       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'A inscrição estadual já está vinculada a outro comprador' });
                     }
-                  );
-                  
+                  })
                 },
-                (error: any) => {
+                error:()=>{
                   this.messageService.add({ severity: 'error', summary: 'Error', detail: 'CPF/CNPJ Já está vinculado a outro comprador' });
                 }
-              );
-              
+              })
             },
-            (error: any) => {
+            error: () => {
               this.messageService.add({ severity: 'error', summary: 'Error', detail: 'CPF/CNPJ Já está vinculado a outro comprador' });
             }
-          );
-          
+          })
         },
-        (error: any) => {
+        error:()=>{
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'E-mail já está vinculado a outro comprador' });
         }
+      }
+        
       );
+
+
+      // this.api.verifyMail(this.cliente.email).subscribe(
+      //   (response: boolean) => {
+          
+      //     this.api.verifyCPF(this.cliente.cpf).subscribe(
+            
+      //       (response: boolean) => {
+              
+      //         this.api.verifyCNPJ(this.cliente.cnpj).subscribe(
+      //           (response: boolean) => {
+                  
+      //             this.api.verifyInscricao(this.cliente.inscricaoEstadual).subscribe(
+      //               (response: boolean) => {
+                      
+      //                 this.api.updateCliente(this.cliente).subscribe(
+      //                   (response: any) => {
+                          
+      //                     this.router.navigate(['']);
+                          
+      //                   },
+      //                   (error: any) => {
+      //                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erro ao gravar' });
+      //                   }
+      //                 );
+      //                 this.router.navigate(['']);
+                      
+      //               },
+      //               (error: any) => {
+      //                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'A inscrição estadual já está vinculada a outro comprador' });
+      //               }
+      //             );
+                  
+      //           },
+      //           (error: any) => {
+      //             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'CPF/CNPJ Já está vinculado a outro comprador' });
+      //           }
+      //         );
+              
+      //       },
+      //       (error: any) => {
+      //         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'CPF/CNPJ Já está vinculado a outro comprador' });
+      //       }
+      //     );
+          
+      //   },
+      //   (error: any) => {
+      //     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'E-mail já está vinculado a outro comprador' });
+      //   }
+      // );
 
     }
     else{

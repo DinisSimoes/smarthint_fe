@@ -5166,13 +5166,6 @@ var _MatInternalFormField = __MatInternalFormField;
 })();
 
 export {
-  coerceBooleanProperty,
-  coerceNumberProperty,
-  _isNumberValue,
-  coerceArray,
-  coerceCssPixelValue,
-  coerceElement,
-  coerceStringArray,
   Platform,
   getSupportedInputTypes,
   normalizePassiveListenerOptions,
@@ -5182,8 +5175,6 @@ export {
   _getFocusedElementPierceShadowDom,
   _getEventTarget,
   _isTestEnvironment,
-  Directionality,
-  BidiModule,
   BACKSPACE,
   ENTER,
   ESCAPE,
@@ -5198,6 +5189,13 @@ export {
   DOWN_ARROW,
   A,
   hasModifierKey,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  _isNumberValue,
+  coerceArray,
+  coerceCssPixelValue,
+  coerceElement,
+  coerceStringArray,
   ObserversModule,
   addAriaReferencedId,
   removeAriaReferencedId,
@@ -5210,6 +5208,8 @@ export {
   FocusMonitor,
   CdkMonitorFocus,
   A11yModule,
+  Directionality,
+  BidiModule,
   VERSION2 as VERSION,
   AnimationCurves,
   AnimationDurations,
@@ -5256,4 +5256,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-P5QTUT3Z.js.map
+//# sourceMappingURL=chunk-WYZYW7ME.js.map

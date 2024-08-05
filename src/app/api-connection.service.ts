@@ -31,20 +31,31 @@ export class ApiConnectionService {
     return this.httpClient.get<Client>(`https://localhost:7235/api/Client/${id}`);
   }
 
-  verifyMail(email: string):Observable<boolean>{
-    return this.httpClient.get<boolean>(`https://localhost:7235/api/verifyMail?email=${email}`);
+  verifyMail(email: string){
+    return this.httpClient.get<boolean>(`https://localhost:7235/api/Client/verifyMail?email=${email}`);
   }
 
-  verifyCNPJ(cnpj: number):Observable<boolean>{
-    return this.httpClient.get<boolean>(`https://localhost:7235/api/verifyCNPJ?CNPJ=${cnpj}`);
+  verifyCNPJ(cnpj: Number | null):Observable<boolean>{
+    if(cnpj != null){
+      return this.httpClient.get<boolean>(`https://localhost:7235/api/Client/verifyCNPJ?CNPJ=${cnpj}`);
+    }
+    else{
+      return this.httpClient.get<boolean>(`https://localhost:7235/api/Client/verifyCNPJ`);
+    }
   }
 
-  verifyCPF(cpf: number):Observable<boolean>{
-    return this.httpClient.get<boolean>(`https://localhost:7235/api/verifyCPF?CPF=${cpf}`);
+  verifyCPF(cpf: Number | null):Observable<boolean>{
+    if(cpf != null){
+      return this.httpClient.get<boolean>(`https://localhost:7235/api/Client/verifyCPF?CPF=${cpf}`);
+    }
+    else{
+      return this.httpClient.get<boolean>(`https://localhost:7235/api/Client/verifyCPF`);
+    }
+    
   }
 
   verifyInscricao(inscricao: string):Observable<boolean>{
-    return this.httpClient.get<boolean>(`https://localhost:7235/api/verifyInscricao?inscricaoEstadual=${inscricao}`);
+    return this.httpClient.get<boolean>(`https://localhost:7235/api/Client/verifyInscricao?inscricaoEstadual=${inscricao}`);
   }
 
   updateCliente(client: Client):any{

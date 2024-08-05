@@ -54,16 +54,16 @@ export class ListagemCompradoresComponent {
 constructor(private api: ApiConnectionService, private router: Router, private globals:GlobalsService) {
   //this.dataSource.data = this.api.getClientes();
 
-  this.api.getClientes().subscribe(
-    (response: Client[]) => {
+  this.api.getClientes().subscribe({
+    next: (response) => {
       this.clientes = response;
       console.log(response);
       this.dataSource.data = response;
     },
-    (error) => {
+    error: (error) => {
       console.error('Erro ao obter clientes:', error);
     }
-  );
+  });
 }
 
  ngAfterViewInit() {
