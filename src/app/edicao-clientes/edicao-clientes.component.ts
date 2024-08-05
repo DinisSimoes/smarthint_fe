@@ -102,6 +102,7 @@ export class EdicaoClientesComponent {
                     next:()=>{
                       this.api.updateCliente(this.cliente).subscribe({
                         next:()=>{
+                          this.messageService.add({severity:'success', summary: 'Success', detail: 'Cliente Atualizado/Criado com Sucesso!'});
                           this.router.navigate(['']);
                         },
                         error: () => {
