@@ -8,8 +8,8 @@ export class Client{
     cnpj!: Number;
     inscricaoEstadual!: string;
     bloqueado!: boolean;
-    genero!: string;
-    dataNascimento!: Date;
+    genero!: string | null;
+    dataNascimento!: Date | null;
     dataCadastro!: Date;
     senha!: string
 }

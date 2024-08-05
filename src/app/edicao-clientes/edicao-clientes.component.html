@@ -127,7 +127,7 @@
                 <div>
                     <mat-form-field class="example-full-width">
                         <mat-label>Senha</mat-label>
-                        <input matInput type="password" placeholder="" value="" maxlength="15" minlength="8"/>
+                        <input matInput type="password" placeholder="" [(ngModel)]="cliente.senha" maxlength="15" minlength="8"/>
                     </mat-form-field>
                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                         <div *ngIf="f.email.errors.required">Senha é obrigatório</div>

@@ -62,6 +62,12 @@ export class EdicaoClientesComponent {
         }
       });
     }
+    else{
+      this.cliente = new Client();
+      this.cliente.ID = -1;
+      this.cliente.genero = null;
+      this.cliente.dataNascimento = null;
+    }
   }
 
   numberOnly(event:any): boolean {
@@ -100,8 +106,9 @@ export class EdicaoClientesComponent {
                 next:()=>{
                   this.api.verifyInscricao(this.cliente.inscricaoEstadual).subscribe({
                     next:()=>{
+                      console.log(this.cliente);
                       this.api.updateCliente(this.cliente).subscribe({
-                        next:()=>{
+                        next:(response)=>{
                           this.messageService.add({severity:'success', summary: 'Success', detail: 'Cliente Atualizado/Criado com Sucesso!'});
                           this.router.navigate(['']);
                         },

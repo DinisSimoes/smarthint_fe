@@ -58,7 +58,7 @@ export class ApiConnectionService {
     return this.httpClient.get<boolean>(`https://localhost:7235/api/Client/verifyInscricao?inscricaoEstadual=${inscricao}`);
   }
 
-  updateCliente(client: Client):any{
-    this.httpClient.post(`https://localhost:7235/api/Client/EditClient`, client);
+  updateCliente(client: Client):Observable<any>{
+    return this.httpClient.post(`https://localhost:7235/api/Client/EditClient`, client);
   }
 }
